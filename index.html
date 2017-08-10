@@ -126,7 +126,7 @@
   node[fillcolor="#C8E6C9 " style="filled" fontcolor="black"];
   //Small
   Geo;APV;Currencies;Mailer;Memberships;PaymentMethods;Reviews;SupportLevel;Tickets;
-  Uploads;Achievement;
+  Uploads;Achievement;Levels;
 
 
 
@@ -142,15 +142,27 @@
  
   
   subgraph plasma {
-    {  Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation,     CRM} -> Events;
-    { Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation} -> Auth;
+    {  Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels,  CRM} -> Events;
+    { Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels} -> Auth;
     Events -> Auth;
   }
   subgraph plasma_cart {
-      rank=same;
-    Cart -> {Discounts, Products, Tools, Offers};
+    Cart -> {Discounts, Products, Tools, Offers,Memberships, Users};
 
   }
+  
+  subgraph plasma_search {
+    Products -> {Taxonomy};
+    Collections-> {Taxonomy,Products};
+    
+
+  }
+  
+  subgraph plasma_checkout {
+    Orders -> {Cart,PaymentMethods,Balances};
+
+  }
+  
 }</pre>
 <div id="options">
   <label id="engine">
