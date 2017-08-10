@@ -142,8 +142,12 @@
  
   
   subgraph plasma {
-    { Auth, Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation,     CRM} -> Events;
-    { Events, Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation} -> Auth;
+    {  Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation,     CRM} -> Events;
+    { Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation} -> Auth;
+    Events -> Auth;
+  }
+  subgraph plasma_cart {
+      rank=same;
     Cart -> {Discounts, Products, Tools, Offers};
 
   }
