@@ -115,17 +115,11 @@
   // Storage - #303F9F (dark blue)
   node[fillcolor="#303F9F " style="filled" fontcolor="white"];
   
-digraph architecture {
-  rankdir=LR;
-
-  // Storage - #303F9F (dark blue)
-  node[fillcolor="#303F9F " style="filled" fontcolor="white"];
-  
   // Client-side Apps - #FFEB3B (yellow)
   node[fillcolor="#FFEB3B " style="filled" fontcolor="black"];
   //Average  
   Cart;Vendors;Collections;Notifications;Tools;Discounts;Chat;Taxonomy;Comments;Pages;
-  Affilates;Taxonomy;Offers;
+  Affilates;Taxonomy;Offers;Billing;
 
 
   // Microservices - #C8E6C9 (light green)
@@ -148,8 +142,8 @@ digraph architecture {
  
   
   subgraph plasma {
-    {  Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels,  Promos,CRM} -> Events;
-    { Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels,Promos} -> Auth;
+    {  Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels,  Promos,Billing,CRM} -> Events;
+    { Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels,Promos,Billing} -> Auth;
     Events -> Auth;
   }
   subgraph plasma_cart {
