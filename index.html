@@ -109,61 +109,7 @@
   </style>
 </head>
 <body>
-<pre id="editor">digraph architecture {
-  rankdir=LR;
-
-  // Storage - #303F9F (dark blue)
-  node[fillcolor="#303F9F " style="filled" fontcolor="white"];
-  
-  // Client-side Apps - #FFEB3B (yellow)
-  node[fillcolor="#FFEB3B " style="filled" fontcolor="black"];
-  //Average  
-  Cart;Vendors;Collections;Notifications;Tools;Discounts;Chat;Taxonomy;Comments;Pages;
-  Affilates;Taxonomy;Offers;Billing;
-
-
-  // Microservices - #C8E6C9 (light green)
-  node[fillcolor="#C8E6C9 " style="filled" fontcolor="black"];
-  //Small
-  Geo;APV;Currencies;Mailer;Memberships;PaymentMethods;Reviews;SupportLevel;Tickets;
-  Uploads;Achievement;Levels;Promos;
-
-
-
-  // API Gateways - #FFCCBC (light orange)
-  node[fillcolor="#FFCCBC " style="filled" fontcolor="black"];
-  //huge
-  Users;Balances;Products;Events;Orders;Auth[label="Authorization"];Statistics;Log;Translation;
-
-
-  // 3rd-party APIs - #CFD8DC (light grey)
-  node[fillcolor="#CFD8DC " style="filled" fontcolor="black"];
-  CRM;
- 
-  
-  subgraph plasma {
-    {  Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels,  Promos,Billing,CRM} -> Events;
-    { Users,Balances, Orders, Products, Cart,    Geo,    APV,    Vendors,    Collections,    Currencies,    Mailer,    Memberships,    Notifications,    PaymentMethods,    Reviews,    Statistics,    SupportLevel,    Tickets,    Uploads,    Offers,    Tools,    Discounts,    Chat,    Log,    Taxonomy,    Achievement,    Comments,    Pages,    Affilates,    Translation, Levels,Promos,Billing} -> Auth;
-    Events -> Auth;
-  }
-  subgraph plasma_cart {
-    Cart -> {Discounts, Products, Tools, Offers,Memberships, Users};
-
-  }
-  
-  subgraph plasma_search {
-    Products -> {Taxonomy};
-    Collections-> {Taxonomy,Products};
-    
-
-  }
-  
-  subgraph plasma_checkout {
-    Orders -> {Cart,PaymentMethods,Balances};
-
-  }
-  
-}</pre>
+<pre id="editor"></pre>
 <div id="options">
   <label id="engine">
     Engine:
@@ -221,6 +167,15 @@
       engineEl = document.querySelector("#engine select"),
       rawEl = document.querySelector("#raw input"),
       errorEl = document.querySelector("#error");
+    
+    var xmlhttp, text;
+xmlhttp = new XMLHttpRequest();
+xmlhttp.open('GET', 'plasma.dot', false);
+xmlhttp.send();
+text = xmlhttp.responseText;
+
+editor = ace.edit("editor")
+editor.setValue(text);
 
     function show_status(text, hide) {
       hide = hide || 0;
